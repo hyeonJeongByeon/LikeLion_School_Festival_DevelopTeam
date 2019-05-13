@@ -51,10 +51,15 @@ def comment_write(request, board_id):
         drop = request.POST.get('crowded')
         print(drop)
 
-
     if not content:
         messages.info(request, 'You didnt write anything')
         return redirect('detail', board_id)
 
     Comment.objects.create(post=post, comment_contents=content, dropdown=drop)
     return redirect('detail', board_id)
+
+def board_search(request):
+    keyword = request.GET.get('board_search')
+    results = Board.objects.filter(title__contains = keyword)
+    
+    return render(request, 'search_result.html',{'results':results, 'keyword':keyword})

@@ -4,7 +4,16 @@
     <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
     <!-- <a class="nav-item nav-link" href="{% url 'new' %}">글쓰기</a> -->
 </div>
+
+<div class="search_box row"> 
+    <form action="{% url 'board_search' %}" method="get"> 
+        <input type = "text" name = "board_search"> 
+        <input type = "submit" value="SEARCH"  id="search_btn"> 
+</div>
+
+
 {% for board in boards.all %}    
+
 <div class="container">
     <a href="{% url 'detail' board.id %}">
     <h1>{{ board.title }}</h1>
