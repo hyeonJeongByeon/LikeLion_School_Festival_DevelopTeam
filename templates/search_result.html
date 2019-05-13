@@ -1,0 +1,19 @@
+<div class="navbar">
+    <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+    <!-- <a class="nav-item nav-link" href="{% url 'new' %}">글쓰기</a> -->
+</div>
+
+<h1>'{{keyword}}'의 검색 결과입니다.</h1>
+
+<br>
+<form action = "{% url 'board_search' %}" method='get'>
+    <input type="hidden" name="board_search" value="{{keyword}}">
+</form>
+
+{% for result in results.all %}    
+<div class="container">
+    <h2>{{result.title}}</h2>
+    <h2>{{result.comment}} </h2> 
+    <p><a href="{% url 'detail' result.id %}">자세히보기</a></p>
+</div>
+{% endfor %}
